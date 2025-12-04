@@ -14,6 +14,7 @@
         
         <button class="nav-btn active" onclick="loadView('home', this)">>> DASHBOARD</button>
         <button class="nav-btn" onclick="loadView('map', this)">>> FLIGHT MAP</button>
+<button class="nav-btn" onclick="loadView('flightlog', this)">>> FLIGHT LOGS</button>
         <button class="nav-btn" onclick="loadView('graphs', this)">>> SIGNAL GRAPHS</button>
         <button class="nav-btn" onclick="loadView('terminal', this)">>> ROOT TERMINAL</button>
         <button class="nav-btn" onclick="loadView('telemetry', this)">>> SYSTEM STATS</button>
@@ -60,6 +61,7 @@
 
     <script>
         const routes = {
+'flightlog': '/flightlog/',
             'map': '/tar1090/',
             'graphs': '/graphs1090/',
             'terminal': '/terminal/',

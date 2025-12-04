@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html><head><title>Flight Log</title><style>
+body{background-color:#000;color:#00ff00;font-family:monospace;padding:20px;}
+h1{border-bottom:1px solid #00ff00;}
+table{width:100%;border-collapse:collapse;margin-top:20px;}
+th{text-align:left;border-bottom:2px solid #004400;padding:10px;color:#00aa00;}
+td{border-bottom:1px solid #002200;padding:8px;}
+tr:hover{background-color:#001100;}
+.metric{color:#00ffff;}
+</style></head><body>
+<h1>// DAILY_FLIGHT_LOG</h1><p>Recent Aircraft: <strong>{{ count }}</strong></p>
+<table><thead><tr><th>HEX</th><th>CALLSIGN</th><th>REG</th><th>LAST SEEN</th><th>DIST (mi)</th><th>ALT (ft)</th></tr></thead>
+<tbody>{% for row in flights %}<tr><td>{{ row[0] }}</td><td>{{ row[1] }}</td><td>{{ row[2] }}</td><td>{{ row[4] }}</td><td class="metric">{{ "%.1f"|format(row[7]) }}</td><td class="metric">{{ row[5] }}</td></tr>{% endfor %}</tbody></table>
+</body></html>
