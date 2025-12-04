@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evan's Cyber Ops</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Evan-OptiPlex</h1>
+        <p>System Status: <span style="color:cyan">ONLINE</span> | Security: <span style="color:cyan">ACTIVE</span></p>
+
+        <div class="panel">
+            <h2>// OPERATOR_INFO</h2>
+            <p>Welcome back, Evan. Systems are primed for flight tracking and automation.</p>
+        </div>
+
+        <div class="grid">
+            <div class="panel">
+                <h3>ADS-B INTELLIGENCE</h3>
+                <a href="/tar1090/" class="btn" target="_blank">>> LAUNCH MAP (TAR1090)</a>
+                <a href="/graphs1090/" class="btn" target="_blank">>> SIGNAL ANALYTICS</a>
+            </div>
+            <div class="panel">
+                <h3>SYSTEM CORE</h3>
+                <a href="/terminal/" class="btn" target="_blank">>> TERMINAL ACCESS</a>
+                <a href="/glances/" class="btn" target="_blank">>> LIVE TELEMETRY</a>
+            </div>
+        </div>
+        
+        <div class="panel">
+            <h2>// ACTIVE_PROJECTS</h2>
+            <ul style="text-align: left;">
+                <li>> <strong>AutoISO Backup:</strong> Configured [READY]</li>
+                <li>> <strong>Flight Feeder:</strong> Receiving [ACTIVE]</li>
+                <li>> <strong>Cyber Ops Dash:</strong> Deployed [CURRENT]</li>
+            </ul>
+        </div>
+
+        <footer>&copy; 2025 Evan Beechem | OptiPlex Node</footer>
+    </div>
+</body>
+</html>

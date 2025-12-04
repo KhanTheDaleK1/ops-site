@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVAN // OPS CENTER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+
+    <div id="sidebar">
+        <h1>EVAN-OPTIPLEX<br>OPS NODE</h1>
+        
+        <button class="nav-btn active" onclick="loadView('home', this)">>> DASHBOARD</button>
+        <button class="nav-btn" onclick="loadView('map', this)">>> FLIGHT MAP</button>
+        <button class="nav-btn" onclick="loadView('graphs', this)">>> SIGNAL GRAPHS</button>
+        <button class="nav-btn" onclick="loadView('terminal', this)">>> ROOT TERMINAL</button>
+        <button class="nav-btn" onclick="loadView('telemetry', this)">>> SYSTEM STATS</button>
+
+        <div class="status-bar">
+            <p>SECURE LINK: ACTIVE</p>
+            <button class="refresh-btn" onclick="reloadFrame()">[ FORCE REFRESH ]</button>
+        </div>
+    </div>
+
+    <div id="viewport">
+        
+        <div id="home-content">
+            <div class="panel">
+                <h2>// SYSTEM_STATUS</h2>
+                <p>Welcome, Operator. Systems are primed.</p>
+                <p><strong>Uptime:</strong> <span id="uptime">ONLINE</span> | <strong>Security:</strong> ENFORCED</p>
+            </div>
+            
+            <div class="panel">
+                <h2>// MODULE_STATUS</h2>
+                <ul style="list-style-type: square; color: #00aa00;">
+                    <li><strong>ReadsB Feeder:</strong> <span style="color:#0f0">RECEIVING</span></li>
+                    <li><strong>Tar1090 Map:</strong> <span style="color:#0f0">READY</span></li>
+                    <li><strong>Graphs1090:</strong> <span style="color:#0f0">READY</span></li>
+                    <li><strong>Web Terminal:</strong> <span style="color:#0f0">SECURE</span></li>
+                </ul>
+            </div>
+
+            <div class="panel">
+                <h2>// OPS_LOG</h2>
+                <p>> System upgraded to Mission Control Interface.</p>
+                <p>> Flight tracking active on Port 80.</p>
+                <p>> Use the sidebar to toggle views instantly.</p>
+            </div>
+        </div>
+
+        <iframe id="content-frame" src=""></iframe>
+    </div>
+
+    <script src="matrix.js"></script>
+
+    <script>
+        // Define paths to your tools
+        const routes = {
+            'map': '/tar1090/',
+            'graphs': '/graphs1090/',
+            'terminal': '/terminal/',
+            'telemetry': '/glances/'
+        };
+
+        const frame = document.getElementById('content-frame');
+        const home = document.getElementById('home-content');
+
+        function loadView(view, btn) {
+            // Reset active button state
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (view === 'home') {
+                // Show Home Panel, Hide Iframe
+                frame.style.display = 'none';
+                home.style.display = 'block';
+                frame.src = ''; // Unload iframe to free memory
+            } else {
+                // Show Iframe, Hide Home Panel
+                home.style.display = 'none';
+                frame.style.display = 'block';
+                // Load target tool
+                frame.src = routes[view];
+            }
+        }
+
+        // Fix for when the tunnel/map hangs
+        function reloadFrame() {
+            if (frame.style.display !== 'none') {
+                console.log("Reloading Tool Frame...");
+                frame.src = frame.src;
+            } else {
+                console.log("Reloading Dashboard...");
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

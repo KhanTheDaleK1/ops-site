@@ -1,0 +1,12 @@
+[Unit]
+Description=Cyber Ops Web Terminal
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/ttyd -p 7681 -b /terminal -W login
+User=root
+Group=root
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

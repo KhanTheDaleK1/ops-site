@@ -1,0 +1,7 @@
+*.pyc
+__pycache__
+*.json
+config.env
+.DS_Store
+work/
+iso_structure/

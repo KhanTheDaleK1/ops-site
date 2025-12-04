@@ -1,0 +1,12 @@
+[Unit]
+Description=Cyber Ops System Monitor (Glances)
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/glances -w -t 2 --url-prefix /glances
+User=evan
+Group=evan
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
