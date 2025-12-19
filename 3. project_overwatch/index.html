@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OVERWATCH // K A E X</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="radar-container">
+        <!-- MAP LAYER -->
+        <div id="map"></div>
+        <div class="vignette"></div>
+        
+        <!-- HUD: TOP LEFT (Clock & Status) -->
+        <div class="hud top-left">
+            <h1>OVERWATCH // ACTIVE</h1>
+            <div id="clock">00:00:00</div>
+        </div>
+        
+        <!-- HUD: TOP RIGHT (Target List) -->
+        <div class="hud top-right">
+            <div class="panel-header">>> TARGET_FEED</div>
+            <div class="scroll-box">
+                <table id="target-table">
+                    <thead><tr><th>FLIGHT</th><th>ALT</th><th>SPD</th><th>DIST</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- SIDEBAR: DETAIL PANEL (Hidden by default) -->
+        <div id="detail-panel" class="detail-sidebar hidden">
+            <button onclick="deselectAircraft()" class="close-btn"><i class="fas fa-times"></i></button>
+            
+            <div class="img-box">
+                <img id="sel-photo" src="" style="display:none;">
+                <div id="sel-photo-placeholder">[ NO OPTICAL ]</div>
+                <div class="scanline-overlay"></div>
+            </div>
+
+            <div class="info-header">
+                <div id="sel-callsign" class="big-text">NO TARGET</div>
+                <div id="sel-op" class="sub-text">SCANNING...</div>
+            </div>
+
+            <div class="data-grid">
+                <div class="data-cell">
+                    <span class="label">TYPE</span>
+                    <span id="sel-type" class="val">---</span>
+                </div>
+                <div class="data-cell">
+                    <span class="label">REGISTRATION</span>
+                    <span id="sel-reg" class="val">---</span>
+                </div>
+
+                <div class="data-cell">
+                    <span class="label">ALTITUDE</span>
+                    <span id="sel-alt" class="val">---</span>
+                </div>
+                <div class="data-cell">
+                    <span class="label">SPEED</span>
+                    <span id="sel-spd" class="val">---</span>
+                </div>
+
+                <div class="data-cell">
+                    <span class="label">V. RATE</span>
+                    <span id="sel-vrate" class="val">---</span>
+                </div>
+                <div class="data-cell">
+                    <span class="label">SQUAWK</span>
+                    <span id="sel-squawk" class="val">---</span>
+                </div>
+
+                <div class="data-cell full-width">
+                    <span class="label">PREDICTED ROUTE</span>
+                    <span id="sel-route" class="val">CALCULATING...</span>
+                </div>
+
+                <div class="data-cell full-width">
+                    <span class="label">COORDINATES (LAT / LON)</span>
+                    <span id="sel-latlon" class="val">---, ---</span>
+                </div>
+                
+                <div class="data-cell full-width">
+                    <span class="label">SIGNAL STRENGTH (RSSI)</span>
+                    <span id="sel-rssi" class="val">---</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hud bottom-right">
+            <span>SECTOR: K A E X</span><br>
+            <span id="aircraft-count" style="font-size: 1.5em;">TARGETS: 0</span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="radar.js"></script>
+</body>
+</html>

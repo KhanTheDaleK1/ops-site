@@ -3,6 +3,7 @@ import sqlite3, os
 app = Flask(__name__)
 DB_FILE = os.path.join(os.path.dirname(__file__), "flights.db")
 @app.route('/')
+@app.route('/flight-map/')
 def index():
     conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()

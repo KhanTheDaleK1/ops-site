@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EVAN // OPS CENTER</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <style>
         .menu-header {
             color: #005500;
@@ -23,6 +24,7 @@
         <h1>EVAN-OPTIPLEX<br>OPS NODE</h1>
         
         <button class="nav-btn active" onclick="loadView('home', this)">>> DASHBOARD</button>
+        <button class="nav-btn" onclick="loadView('projects', this)">>> ACTIVE PROJECTS</button>
 
         <div class="menu-header">FLIGHT OPERATIONS</div>
         <button class="nav-btn" onclick="loadView('map', this)">>> FLIGHT MAP</button>
@@ -40,27 +42,14 @@
     </div>
 
     <div id="viewport">
-        <div id="home-content">
-            <div class="panel">
-                <h2>// SYSTEM_STATUS</h2>
-                <p>Welcome, Operator. Systems are primed.</p>
-                <p><strong>Uptime:</strong> <span id="uptime">ONLINE</span> | <strong>Security:</strong> ENFORCED</p>
-            </div>
-            <div class="panel">
-                <h2>// ACTIVE_MODULES</h2>
-                <ul style="list-style-type: square; color: #00aa00;">
-                    <li><strong>ADS-B Stack:</strong> <span style="color:#0f0">ACTIVE</span></li>
-                    <li><strong>Net Monitor:</strong> <span style="color:#0f0">ACTIVE</span></li>
-                    <li><strong>Packet Sniffer:</strong> <span style="color:#0f0">ACTIVE</span></li>
-                </ul>
-            </div>
-        </div>
-        <iframe id="content-frame" src=""></iframe>
+        <iframe id="content-frame" src="welcome.html"></iframe>
     </div>
 
     <script src="matrix.js"></script>
     <script>
         const routes = {
+            'home': 'welcome.html',
+            'projects': 'projects.html',
             'map': '/tar1090/',
             'graphs': '/graphs1090/',
             'flightlog': '/flightlog/',
@@ -70,17 +59,20 @@
             'telemetry': '/glances/'
         };
         const frame = document.getElementById('content-frame');
-        const home = document.getElementById('home-content');
 
         function loadView(view, btn) {
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            if (view === 'home') { frame.style.display = 'none'; home.style.display = 'block'; frame.src = ''; }
-            else { home.style.display = 'none'; frame.style.display = 'block'; frame.src = routes[view]; }
+            if(btn) btn.classList.add('active');
+            
+            if (routes[view]) {
+                frame.src = routes[view];
+            } else {
+                console.error("Unknown view:", view);
+            }
         }
         
         function reloadFrame() {
-            if (frame.style.display !== 'none') { frame.src = frame.src; } else { location.reload(); }
+            if (frame.src) { frame.src = frame.src; } else { location.reload(); }
         }
     </script>
 </body>

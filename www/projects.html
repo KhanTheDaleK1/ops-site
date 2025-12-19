@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ACTIVE PROJECTS</title>
+    <style>
+        body { margin: 0; padding: 40px; background-color: #0d0d0d; color: #00ff00; font-family: 'Courier New', monospace; }
+        
+        /* HEADER */
+        h1 { border-bottom: 2px solid #00ff00; padding-bottom: 10px; margin-bottom: 30px; letter-spacing: 2px; text-transform: uppercase; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 30px; }
+        
+        /* CARD STYLING (Matches Screenshot) */
+        .card { 
+            border: 2px solid #00ff00; padding: 0; position: relative;
+            background: #000; transition: 0.2s; min-height: 220px;
+            display: flex; flex-direction: column;
+        }
+        .card:hover { box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); }
+        
+        .card-header {
+            text-align: center; font-weight: bold; font-size: 1.4rem; padding: 15px;
+            letter-spacing: 1px;
+        }
+        
+        /* The Dotted Separator */
+        .separator { border-bottom: 1px dashed #004400; width: 90%; margin: 0 auto 20px auto; }
+
+        .card-body { padding: 0 20px; flex-grow: 1; text-align: center; }
+        
+        /* Text Styling */
+        .status-line { font-size: 1.1rem; font-weight: bold; margin-bottom: 15px; }
+        .label { color: #00ff00; font-weight: bold; }
+        .value-print { color: #aaaa00; } /* Yellowish for Printing */
+        .value-file { color: #00cc00; }
+        
+        .file-line { font-size: 0.9rem; margin-bottom: 20px; word-break: break-all; }
+        
+        /* Button Styling (Bottom Right) */
+        .btn-container { text-align: right; padding: 20px; margin-top: auto; }
+        .btn {
+            background: #00ff00; color: #000; padding: 10px 20px; 
+            text-decoration: none; font-weight: bold; font-size: 1.0rem;
+            display: inline-block;
+        }
+        .btn:hover { background: #fff; cursor: pointer; }
+
+    </style>
+</head>
+<body>
+
+    <h1>// ACTIVE_PROJECTS //</h1>
+
+    <div class="grid">
+        
+        <div class="card">
+            <div class="card-header">OCTOPRINT</div>
+            <div class="separator"></div>
+            
+            <div class="card-body">
+                <div class="status-line">
+                    <span class="label">STATUS:</span> 
+                    <span id="octo-status" class="value-print">CONNECTING...</span>
+                </div>
+                
+                <div class="file-line">
+                    <span class="label">File:</span> 
+                    <span id="octo-file" class="value-file">---</span>
+                </div>
+            </div>
+
+            <div class="btn-container">
+                <a href="https://octoprint.beechem.site" target="_blank" class="btn">ACCESS >></a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        /**
+         * OCTOPRINT STATUS MODULE
+         * Connects to the local 3D printer instance to fetch real-time job status.
+         */
+
+        // ! SECURITY WARNING: This API Key is hardcoded. 
+        // TODO: Move this to a secure backend proxy or environment variable in production.
+        const API_KEY = "3BGY3QBeERGnNJwQjQNiwYgMkU4xcLtJzIXGL8smnuo";
+        const API_URL = "https://octoprint.beechem.site/api/job";
+
+        /**
+         * Polls the OctoPrint API for current job status.
+         * Updates the UI with 'Printing', 'Operational', or error states.
+         * Runs every 5 seconds.
+         */
+        async function updatePrinter() {
+            try {
+                const response = await fetch(API_URL, {
+                    headers: { "X-Api-Key": API_KEY }
+                });
+                
+                if (!response.ok) throw new Error("API Error");
+
+                const data = await response.json();
+                const state = data.state; 
+                // Completion can be null if not printing
+                const progress = data.progress.completion ? Math.round(data.progress.completion) : 0;
+                const filename = data.job.file.name || "No File Loaded";
+
+                // Format: "PRINTING (6%)" or "OPERATIONAL"
+                let statusText = state.toUpperCase();
+                if (state === "Printing") {
+                    statusText += " (" + progress + "%)";
+                    document.getElementById('octo-status').style.color = "#ffff00"; // Yellow
+                } else {
+                    document.getElementById('octo-status').style.color = "#00ff00"; // Green
+                }
+
+                document.getElementById('octo-status').innerText = statusText;
+                document.getElementById('octo-file').innerText = filename;
+
+            } catch (error) {
+                console.error(error);
+                document.getElementById('octo-status').innerText = "DISCONNECTED";
+                document.getElementById('octo-status').style.color = "#ff0000";
+            }
+        }
+
+        setInterval(updatePrinter, 5000);
+        updatePrinter();
+    </script>
+</body>
+</html>
