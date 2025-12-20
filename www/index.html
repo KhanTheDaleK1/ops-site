@@ -37,14 +37,91 @@
         <button class="nav-btn" onclick="loadView('terminal', this)">>> ROOT TERMINAL</button>
         <button class="nav-btn" onclick="loadView('telemetry', this)">>> SYSTEM STATS</button>
         
-        <div style="margin-top: auto;"></div>
-        <button class="nav-btn" onclick="window.location.href='https://beechem.site'" style="border-color: #005500; color: #008800;">&lt;&lt; BACK TO HOME</button>
+        <div class="sidebar-footer">
+            <button class="nav-btn" onclick="window.location.href='https://beechem.site'" style="border-color: #005500; color: #008800;">&lt;&lt; BACK TO HOME</button>
+            <div style="margin-top: 10px;">&copy; 2025 Evan Beechem</div>
+            <div style="opacity: 0.7;">Ops Center & Project Overwatch</div>
+            <div class="footer-links">
+                <a href="#" class="btn-credits-trigger">Credits</a>
+                <a href="#" class="btn-support-trigger">Support</a>
+                <a href="#" class="btn-eula-trigger">EULA</a>
+            </div>
+        </div>
     </div>
 
     <div id="viewport">
         <iframe id="content-frame" src="/welcome/"></iframe>
     </div>
 
+    <!-- CREDITS MODAL -->
+    <div id="credits-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Credits</h2>
+            <div style="line-height: 1.6;">
+                <h3 style="color: #00ff00; margin-bottom: 5px;">Lead Developer & Operator</h3>
+                <p style="margin-top: 0;">Evan Beechem</p>
+
+                <h3 style="color: #00ff00; margin-bottom: 5px;">Project</h3>
+                <p style="margin-top: 0;">Ops Center UI, Project Overwatch, and Data Feeds</p>
+
+                <h3 style="color: #00ff00; margin-bottom: 5px;">Contributions</h3>
+                <p style="margin-top: 0; font-style: italic; color: #66aa66;">[Placeholder for future contributors]</p>
+
+                <h3 style="color: #00ff00; margin-bottom: 5px;">Libraries & Tools</h3>
+                <ul style="margin-top: 0; padding-left: 20px; color: #88cc88;">
+                    <li>HTML5 + CSS3</li>
+                    <li>Vanilla JavaScript</li>
+                    <li>Canvas Matrix Effect</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- EULA MODAL -->
+    <div id="eula-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>End User License Agreement</h2>
+            <div style="line-height: 1.5; font-size: 0.9rem;">
+                <p><strong>Last Updated: December 2025</strong></p>
+
+                <h3 style="color: #00ff00; margin-bottom: 5px;">1. Acceptance of Terms</h3>
+                <p>By accessing and using this interface ("Software"), you agree to be bound by the terms of this agreement. This environment is provided primarily for <strong>non-commercial, educational, and operational demonstration purposes</strong>.</p>
+
+                <h3 style="color: #00ff00; margin-bottom: 5px;">2. Ownership & Copyright</h3>
+                <p>The Software is the intellectual property of <strong>Evan Beechem</strong>.<br>Copyright &copy; 2025 Evan Beechem. All rights reserved.</p>
+
+                <h3 style="color: #00ff00; margin-bottom: 5px;">3. Open Source License (MIT)</h3>
+                <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+                <p style="background: #001100; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 0.8rem;">The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+                <h3 style="color: #00ff00; margin-bottom: 5px;">4. Disclaimer of Warranty</h3>
+                <p style="text-transform: uppercase; color: #88cc88;">THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+                <h3 style="color: #00ff00; margin-bottom: 5px;">5. Governing Law</h3>
+                <p>This agreement shall be governed by and construed in accordance with the laws of the State of Louisiana, without regard to its conflict of law principles.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPPORT MODAL -->
+    <div id="support-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2>Support Ops Center</h2>
+            <div style="line-height: 1.6; text-align: center;">
+                <p>If this station helped you monitor systems or explore data feeds, you can support continued development here.</p>
+                <div class="support-links">
+                    <a class="support-link primary" href="https://app.chime.com/link/qr?u=Evan-Beechem" target="_blank" rel="noopener">Chime</a>
+                    <a class="support-link" href="https://venmo.com/code?user_id=2391507524911104316&created=1766249257" target="_blank" rel="noopener">Venmo</a>
+                </div>
+                <p class="support-note">Thank you for keeping the uplinks running.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/site-footer.js"></script>
     <script src="matrix.js"></script>
     <script>
         const routes = {
