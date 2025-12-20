@@ -1,7 +1,41 @@
-*.pyc
-__pycache__
-*.json
-config.env
+# General
 .DS_Store
-work/
-iso_structure/
+.env
+.venv
+/tmp
+*.log
+*.swp
+*~
+
+# Python
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+.hypothesis/
+*.sqlite3
+*.db # For flight_logger/flights.db
+
+# Web Assets
+node_modules/
+package-lock.json
+# If any build processes generate files that shouldn't be committed
+# /www/dist/
+# /3. project_overwatch/dist/
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# Shell Scripts
+# No specific ignores needed unless temporary files are generated
+
+# Systemd Service Files - usually committed
+# *.service
