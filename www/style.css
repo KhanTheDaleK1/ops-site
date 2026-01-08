@@ -1,6 +1,6 @@
 /* MISSION CONTROL THEME */
 body {
-    background-color: #000;
+    background-color: #500; /* DEBUG */
     color: #00ff00;
     font-family: 'Courier New', monospace;
     margin: 0;
@@ -95,7 +95,7 @@ canvas#matrix {
 
 /* MAIN VIEWPORT */
 #viewport {
-    position: relative;
+    position: relative; z-index: 5;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -106,8 +106,8 @@ iframe#content-frame {
     width: 100%;
     height: 100%;
     border: none;
-    display: none; /* Hidden until a tool is selected */
-    background-color: #000;
+    /* display: none; */ /* Hidden until a tool is selected */
+    background-color: #500; /* DEBUG */
 }
 
 /* HOME PANEL OVERLAY */
@@ -177,7 +177,7 @@ h2 { margin-top: 0; border-bottom: 1px solid #004400; padding-bottom: 5px; font-
     padding: 24px;
     max-width: 600px;
     width: 90%;
-    position: relative;
+    position: relative; z-index: 5;
     color: #c6ffc6;
     box-shadow: 0 0 25px rgba(0, 255, 0, 0.2);
     max-height: 80vh;
