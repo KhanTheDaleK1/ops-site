@@ -12,13 +12,7 @@ if ! systemctl is-active --quiet adsbexchange-feed; then
     curl -L -o /tmp/axfeed.sh https://www.adsbexchange.com/feed.sh
     sudo bash /tmp/axfeed.sh
 fi
-echo ">> [3/4] FlightAware"
-if ! command -v piaware &> /dev/null; then
-    wget -O /tmp/piaware.deb https://www.flightaware.com/adsb/piaware/files/packages/pool/piaware/p/piaware-repository/piaware-repository_7.2_all.deb
-    sudo dpkg -i /tmp/piaware.deb
-    sudo apt-get update && sudo apt-get install -y piaware
-    sudo bash "$SCRIPT_DIR/configure_piaware.sh"
-fi
+
 echo ">> [4/4] FlightRadar24"
 if ! command -v fr24feed &> /dev/null; then
     echo "Starting FR24 Installer. Select 'ModeS Beast TCP' -> '127.0.0.1' -> '30005'."

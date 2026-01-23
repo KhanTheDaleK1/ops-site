@@ -57,9 +57,7 @@ sudo ss -lntup | grep -v "127.0.0.53" | awk 'NR>1 {print $1, $5, $7}' | while re
         "readsb")        PURPOSE="ADS-B Decoder (SDR Data)" ;; 
         "tar1090")       PURPOSE="Map Interface Backend" ;; 
         "ttyd")          PURPOSE="Web Terminal Service" ;; 
-        "fr24feed")      PURPOSE="FlightRadar24 Feeder" ;; 
-        "piaware")       PURPOSE="FlightAware Management" ;; 
-        "python"|"python3")
+
             if [[ "$CMDLINE" == *"antenna_lab"* ]] || [[ "$CMDLINE" == *"app.py"* ]]; then
                 PURPOSE="Antenna Lab (Physics Engine)"
             elif [[ "$CMDLINE" == *"glances"* ]]; then
