@@ -38,4 +38,4 @@ package-lock.json
 # No specific ignores needed unless temporary files are generated
 
 # Systemd Service Files - usually committed
-# *.service
+# *.serviceGEMINI.md
